@@ -96,7 +96,7 @@ function Signup() {
                   ))}
                 </ul>
               )}
-              <button type="submit" className="btn btn-primary">Sign up</button>
+              <button type="submit" className="btn btn-primary mt-1">Sign up</button>
             </form>
           </div>
         </div>

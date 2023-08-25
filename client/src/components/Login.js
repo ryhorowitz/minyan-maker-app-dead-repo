@@ -55,6 +55,13 @@ function Login() {
         <div className="row justify-content-center">
           <div className="col-md-6">
             <h2>Login</h2>
+            {loginErrors.length > 0 && (
+              <ul style={{ color: "red" }}>
+                {loginErrors.map((error) => (
+                  <li key={error}>{error}</li>
+                ))}
+              </ul>
+            )}
             <form onSubmit={handleLogin}>
               <div className="form-group">
                 <label htmlFor="username">Username</label>
@@ -79,19 +86,12 @@ function Login() {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-primary">Login</button>
+              <button type="submit" className="btn btn-primary mt-1">Login</button>
             </form>
           </div>
         </div>
       </div>
 
-      {/* {loginErrors.length > 0 && (
-          <ul style={{ color: "red" }}>
-            {loginErrors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
-        )} */}
 
     </>
   )

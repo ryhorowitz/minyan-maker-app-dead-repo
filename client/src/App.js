@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react'
-import { Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import AppContext from './AppContext'
 import Login from "./components/Login"
 import LogoutButton from './LogoutButton'
 import Signup from './components/Signup'
+import LoginSignupButtonsContainer from './components/LoginSignupButtonsContainer'
 
 function App() {
   const { user, setUser } = useContext(AppContext)
@@ -26,28 +27,17 @@ function App() {
       .then(() => navigate('/login'))
   }
   if (!user) {
-    // navigate('/login')
     return (
       <>
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
           <div className='container'>
-
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item active">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <Link to="/login">Login</Link>
-                </button>
-              </li>
-              <li className="nav-item">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <Link to="/signup">Signup</Link>
-                </button>
-              </li>
+              <LoginSignupButtonsContainer />
             </ul>
           </div>
         </nav>
         <Routes>
-          <Route path='/login' element={< Login setUser={setUser} />} />
+          <Route path='/login' element={<Login setUser={setUser} />} />
           <Route path='/signup' element={<Signup setUser={setUser} />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
 
