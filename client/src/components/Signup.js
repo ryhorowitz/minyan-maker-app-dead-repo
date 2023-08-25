@@ -48,52 +48,59 @@ function Signup() {
   }
   return (
     <>
-      <h1>Signup</h1>
-
-      <form onSubmit={handleSignupSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="signup-username"
-            name="username"
-            value={signupFormData.username}
-            onChange={handleSignupFormData}
-          // required
-          />
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <h2>Signup</h2>
+            <form onSubmit={handleSignupSubmit}>
+              <div className="form-group">
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="signup-username"
+                  className="form-control"
+                  name="username"
+                  value={signupFormData.username}
+                  onChange={handleSignupFormData}
+                // required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="signup-password"
+                  className="form-control"
+                  name="password"
+                  value={signupFormData.password}
+                  onChange={handleSignupFormData}
+                // required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm Password:</label>
+                <input
+                  type="password"
+                  id="signup-confirmPassword"
+                  className="form-control"
+                  name="confirmPassword"
+                  value={signupFormData.confirmPassword}
+                  onChange={handleSignupFormData}
+                // required
+                />
+              </div>
+              {signupErrors.length > 0 && (
+                <ul style={{ color: "red" }}>
+                  {signupErrors.map((error) => (
+                    <li key={error}>{error}</li>
+                  ))}
+                </ul>
+              )}
+              <button type="submit" className="btn btn-primary">Sign up</button>
+            </form>
+          </div>
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="signup-password"
-            name="password"
-            value={signupFormData.password}
-            onChange={handleSignupFormData}
-          // required
-          />
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input
-            type="password"
-            id="signup-confirmPassword"
-            name="confirmPassword"
-            value={signupFormData.confirmPassword}
-            onChange={handleSignupFormData}
-          // required
-          />
-        </div>
-        {signupErrors.length > 0 && (
-          <ul style={{ color: "red" }}>
-            {signupErrors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
-        )}
-        <button type="submit">Sign up</button>
-      </form>
-
+      </div>
     </>
   )
 }

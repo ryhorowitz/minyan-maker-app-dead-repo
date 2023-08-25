@@ -4,6 +4,7 @@ import AppContext from './AppContext'
 import Login from "./components/Login"
 import LogoutButton from './LogoutButton'
 import Signup from './components/Signup'
+
 function App() {
   const { user, setUser } = useContext(AppContext)
   const navigate = useNavigate()
@@ -26,10 +27,29 @@ function App() {
   }
   if (!user) {
     return (
-      <Routes>
-        <Route path='/login' element={< Login setUser={setUser} />} />
-        <Route path='/signup' element={<Signup setUser={setUser} />} />
-      </Routes>
+      <>
+        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+          <div className='container'>
+
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item active">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <Link to="/login">Login</Link>
+                </button>
+              </li>
+              <li className="nav-item">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <Link to="/signup">Signup</Link>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <Routes>
+          <Route path='/login' element={< Login setUser={setUser} />} />
+          <Route path='/signup' element={<Signup setUser={setUser} />} />
+        </Routes>
+      </>
     )
   }
   return (

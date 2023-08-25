@@ -93,9 +93,6 @@ function Login() {
           </ul>
         )} */}
 
-      <br></br>
-      <br></br>
-
     </>
   )
 
