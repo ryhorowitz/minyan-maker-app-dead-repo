@@ -7,6 +7,7 @@ function Signup() {
   const [signupErrors, setSignupErrors] = useState([])
   const [signupFormData, setSignupFormData] = useState({
     username: '',
+    email: '',
     password: '',
     confirmPassword: ''
   })
@@ -20,6 +21,7 @@ function Signup() {
     e.preventDefault()
     const body = {
       username: signupFormData.username,
+      email: signupFormData.email,
       password: signupFormData.password,
       password_confirmation: signupFormData.confirmPassword
     }
@@ -40,8 +42,7 @@ function Signup() {
         } else {
           r.json().then(e => {
             console.log('error response', e)
-            // console.log('flattening', e.errors.flat())
-            setSignupErrors(Object.values(e.errors))
+            setSignupErrors(Object.values(e))
           })
         }
       })
@@ -53,6 +54,13 @@ function Signup() {
           <div className="col-md-6">
             <h2>Signup</h2>
             <form onSubmit={handleSignupSubmit}>
+              {signupErrors.length > 0 && (
+                <ul style={{ color: "red" }}>
+                  {signupErrors.map((error) => (
+                    <li key={error}>{error}</li>
+                  ))}
+                </ul>
+              )}
               <div className="form-group">
                 <label htmlFor="username">Username:</label>
                 <input
@@ -62,7 +70,19 @@ function Signup() {
                   name="username"
                   value={signupFormData.username}
                   onChange={handleSignupFormData}
-                // required
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="text"
+                  id="signup-email"
+                  className="form-control"
+                  name="email"
+                  value={signupFormData.email}
+                  onChange={handleSignupFormData}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -74,7 +94,7 @@ function Signup() {
                   name="password"
                   value={signupFormData.password}
                   onChange={handleSignupFormData}
-                // required
+                  required
                 />
               </div>
               <div className="form-group">
@@ -86,16 +106,9 @@ function Signup() {
                   name="confirmPassword"
                   value={signupFormData.confirmPassword}
                   onChange={handleSignupFormData}
-                // required
+                  required
                 />
               </div>
-              {signupErrors.length > 0 && (
-                <ul style={{ color: "red" }}>
-                  {signupErrors.map((error) => (
-                    <li key={error}>{error}</li>
-                  ))}
-                </ul>
-              )}
               <button type="submit" className="btn btn-primary mt-1">Sign up</button>
             </form>
           </div>
