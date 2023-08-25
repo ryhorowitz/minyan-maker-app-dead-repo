@@ -22,13 +22,18 @@ Shul.create!(name: 'Mamash', street_address: '1601-03 Lombard Street', city: 'Ph
 Shul.create!(name: 'Shtiebl', street_address: '1321 South Juniper Street', city: 'Philadelphia', state: 'PA',
              postal_code: '19147')
 
-Service.create!(name: 'Shacharit', shul_id: 1, date: 8/31/23, time: 7:15)
-Service.create!(name: 'Mincha', shul_id: 1, date: 8/31/23, time: 3:30)
-Service.create!(name: 'Maariv', shul_id: 1, date: 8/31/23, time: '8:00pm')
+tomorrow = Time.now + 1.day
+tomorrow_at_715 = tomorrow.change(hour: 7, min: 15)
+tomorrow_at_1530 = tomorrow.change(hour: 15, min: 30)
+tomorrow_at_1930 = tomorrow.change(hour: 19, min: 30)
+
+Service.create!(name: 'Shacharit', shul_id: 1, start_datetime: tomorrow_at_715)
+Service.create!(name: 'Mincha', shul_id: 1, start_datetime: tomorrow_at_1530)
+Service.create!(name: 'Maariv', shul_id: 1, start_datetime: tomorrow_at_1930)
 
 user_1.user_services.create(service_id: 1)
-# user_3.user_services.create(service_id: 1)
-# user_2.user_services.create(service_id: 2)
-# user_4.user_services.create(service_id: 2)
-# user_5.user_services.create(service_id: 1)
+user_3.user_services.create(service_id: 1)
+user_2.user_services.create(service_id: 2)
+user_4.user_services.create(service_id: 2)
+user_5.user_services.create(service_id: 1)
 puts 'Seeded'
