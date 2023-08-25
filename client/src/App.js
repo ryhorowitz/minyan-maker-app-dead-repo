@@ -26,6 +26,7 @@ function App() {
       .then(() => navigate('/login'))
   }
   if (!user) {
+    // navigate('/login')
     return (
       <>
         <nav className='navbar navbar-expand-lg navbar-light bg-light'>
@@ -48,6 +49,8 @@ function App() {
         <Routes>
           <Route path='/login' element={< Login setUser={setUser} />} />
           <Route path='/signup' element={<Signup setUser={setUser} />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+
         </Routes>
       </>
     )
