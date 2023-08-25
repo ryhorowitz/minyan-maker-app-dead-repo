@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom'
 import AppContext from './AppContext'
 import Login from "./components/Login"
 import LogoutButton from './LogoutButton'
+import Signup from './components/Signup'
 function App() {
   const { user, setUser } = useContext(AppContext)
   const navigate = useNavigate()
@@ -25,7 +26,10 @@ function App() {
   }
   if (!user) {
     return (
-      < Login setUser={setUser} />
+      <Routes>
+        <Route path='/login' element={< Login setUser={setUser} />} />
+        <Route path='/signup' element={<Signup setUser={setUser} />} />
+      </Routes>
     )
   }
   return (
