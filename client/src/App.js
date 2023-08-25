@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom'
 import AppContext from './AppContext'
 import Login from "./components/Login"
-
+import LogoutButton from './LogoutButton'
 function App() {
   const { user, setUser } = useContext(AppContext)
   const navigate = useNavigate()
@@ -31,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <h2>hello world</h2>
+      <LogoutButton logout={handleLogout} />
     </div>
   );
 }
