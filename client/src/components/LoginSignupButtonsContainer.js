@@ -6,7 +6,7 @@ export default function LoginSignupButtonsContainer() {
         <div className="row">
           <div className="col">
             <li className="nav-item">
-              <button className="navbar-toggler"
+              <button className="navbar-toggler justify-content-center"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"

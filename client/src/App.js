@@ -29,13 +29,16 @@ function App() {
   if (!user) {
     return (
       <>
-        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-          <div className='container'>
+        <div className='container'>
+          <nav className='navbar  justify-content-center navbar-expand-lg navbar-light bg-light'>
+            <div className='container-fluid'>
+            </div>
             <ul className="navbar-nav ml-auto">
               <LoginSignupButtonsContainer />
             </ul>
-          </div>
-        </nav>
+          </nav>
+        </div>
+
         <Routes>
           <Route path='/login' element={<Login setUser={setUser} />} />
           <Route path='/signup' element={<Signup setUser={setUser} />} />
@@ -47,8 +50,18 @@ function App() {
   }
   return (
     <div className="App">
+      <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+        <div className='container'>
+          <ul className="navbar-nav ml-auto">
+          </ul>
+        </div>
+      </nav>
       <h2>hello world</h2>
       <LogoutButton logout={handleLogout} />
+      <Routes>
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+
     </div>
   );
 }
