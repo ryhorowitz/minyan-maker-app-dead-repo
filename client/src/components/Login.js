@@ -64,7 +64,7 @@ function Login() {
             )}
             <form onSubmit={handleLogin}>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="login-username">Username</label>
                 <input
                   type="text"
                   id="login-username"
@@ -72,10 +72,11 @@ function Login() {
                   value={loginFormData.username}
                   onChange={handleLoginFormData}
                   className="form-control"
+                  autoComplete="on"
                   required />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="login-password">Password:</label>
                 <input
                   type="password"
                   id="login-password"

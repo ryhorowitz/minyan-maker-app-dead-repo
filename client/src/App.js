@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import AppContext from './AppContext'
 import Login from "./components/Login"
-import LogoutButton from './LogoutButton'
+import LogoutButton from './components/LogoutButton'
 import Signup from './components/Signup'
 import LoginSignupButtonsContainer from './components/LoginSignupButtonsContainer'
+import NavBar from './components/NavBar'
 
 function App() {
   const { user, setUser } = useContext(AppContext)
@@ -30,9 +31,8 @@ function App() {
     return (
       <>
         <div className='container'>
-          <nav className='navbar  justify-content-center navbar-expand-lg navbar-light bg-light'>
-            <div className='container-fluid'>
-            </div>
+          <nav className="navbar justify-content-center navbar-expand-lg navbar-light"
+            style={{ background: '#e3f2fd' }}>
             <ul className="navbar-nav ml-auto">
               <LoginSignupButtonsContainer />
             </ul>
@@ -50,14 +50,18 @@ function App() {
   }
   return (
     <div className="App">
-      <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-        <div className='container'>
+      <div className='container'>
+        <nav className="navbar justify-content-center navbar-expand-lg navbar-light"
+          style={{ background: '#e3f2fd' }}>
           <ul className="navbar-nav ml-auto">
+            {/* <LoginSignupButtonsContainer /> */}
+            <NavBar logout={handleLogout} />
+            {/* <LogoutButton logout={handleLogout} /> */}
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>
+
       <h2>hello world</h2>
-      <LogoutButton logout={handleLogout} />
       <Routes>
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

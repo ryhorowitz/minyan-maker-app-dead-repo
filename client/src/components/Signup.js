@@ -62,7 +62,7 @@ function Signup() {
                 </ul>
               )}
               <div className="form-group">
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="signup-username">Username:</label>
                 <input
                   type="text"
                   id="signup-username"
@@ -70,11 +70,12 @@ function Signup() {
                   name="username"
                   value={signupFormData.username}
                   onChange={handleSignupFormData}
+                  autoComplete="on"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="signup-email">Email:</label>
                 <input
                   type="text"
                   id="signup-email"
@@ -82,11 +83,12 @@ function Signup() {
                   name="email"
                   value={signupFormData.email}
                   onChange={handleSignupFormData}
+                  autoComplete="on"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="signup-password">Password:</label>
                 <input
                   type="password"
                   id="signup-password"
@@ -98,7 +100,7 @@ function Signup() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password:</label>
+                <label htmlFor="signup-confirmPassword">Confirm Password:</label>
                 <input
                   type="password"
                   id="signup-confirmPassword"
