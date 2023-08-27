@@ -6,14 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)'
 puts '📃 Seeding data...'
-user_1 = User.create!(username: 'rywitz', email: 'rywitz@fakemail.com', password: '1234', password_confirmation: '1234')
+user_1 = User.create!(username: 'rywitz', email: 'rywitz@fakemail.com', password: '1234',
+                      password_confirmation: '1234', admin: false)
 user_2 = User.create!(username: 'pizzaMan', email: 'pizzaMan@fakemail.com', password: '1234',
-                      password_confirmation: '1234')
+                      password_confirmation: '1234', admin: false)
 user_3 = User.create!(username: 'mr.softee', email: 'mr.softee@fakemail.com', password: '1234',
-                      password_confirmation: '1234')
-user_4 = User.create!(username: 'celia', email: 'celia@fakemail.com', password: '1234', password_confirmation: '1234')
+                      password_confirmation: '1234', admin: false)
+user_4 = User.create!(username: 'celia', email: 'celia@fakemail.com', password: '1234', password_confirmation: '1234',
+                      admin: false)
 user_5 = User.create!(username: 'person5', email: 'person5@fakemail.com', password: '1234',
-                      password_confirmation: '1234')
+                      password_confirmation: '1234', admin: false)
 
 Shul.create!(name: "B'nai Abraham", street_address: '527 Lombard St', city: 'Philadelphia', state: 'PA',
              postal_code: '19147')
