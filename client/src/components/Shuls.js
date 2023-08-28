@@ -1,8 +1,17 @@
 import { useContext } from "react"
 import AppContext from "../AppContext"
 import styles from "./componentStyles/Shuls.module.css"
+import { useNavigate } from 'react-router-dom'
+
 function Shuls() {
   const { shuls } = useContext(AppContext)
+  const navigate = useNavigate()
+
+  function handleShulClick(id) {
+    // navigate to new page with more indepth shul info like services
+    console.log('shul id is', id)
+    navigate(`/shuls/${id}`)
+  }
 
   const shulList = shuls.map(shul => {
     return <div className="col" key={shul.id}>
@@ -11,7 +20,8 @@ function Shuls() {
           className="card-img-top img-fluid"
           alt={shul.name}
         ></img>
-        <div className={`card-body ${styles.shulCardBody}`}>
+        <div className={`card-body ${styles.shulCardBody}`}
+          onClick={() => { handleShulClick(shul.id) }}>
           <h5 className="card-title">{shul.name}</h5>
           <p className="text-end">{shul.street_address} {shul.city}, {shul.state} {shul.postal_code}</p>
         </div>

@@ -6,7 +6,11 @@ class ShulsController < ApplicationController
     render json: shuls, status: :ok
   end
 
-  def show; end
+  def show
+    # byebug
+    shul = Shul.find_by(id: params[:id])
+    render json: shul, serializer: ShulServiceSerializer
+  end
 
   private
 

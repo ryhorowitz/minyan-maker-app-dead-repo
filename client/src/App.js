@@ -7,6 +7,7 @@ import LoginSignupButtonsContainer from './components/LoginSignupButtonsContaine
 import NavBar from './components/NavBar'
 import Shuls from './components/Shuls'
 import Profile from './components/Profile'
+import ShulDetail from './components/ShulDetail'
 
 function App() {
   const { user, setUser } = useContext(AppContext)
@@ -55,6 +56,7 @@ function App() {
       <Routes>
         <Route path="/users/:id" element={<Profile />} />
         <Route path="/shuls" element={<Shuls />} />
+        <Route path="/shuls/:id" element={<ShulDetail />} />
         <Route path="*" element={<Navigate to={"/users/" + user.id} replace />} />
       </Routes>
 
