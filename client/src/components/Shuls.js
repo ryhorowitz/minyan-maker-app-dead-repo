@@ -5,7 +5,8 @@ function Shuls() {
   const { shuls, setShuls } = useContext(AppContext)
 
   const shulList = shuls.map(shul => {
-    return <div className="card">
+    return <div className="card" key={shul.id}>
+      <img src={shul.img} class="card-img-top" alt={shul.name}></img>
       <div className="card-body">
         <h5 class="card-title">{shul.name}</h5>
         <div>
