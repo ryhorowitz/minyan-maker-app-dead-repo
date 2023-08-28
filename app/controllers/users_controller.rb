@@ -12,6 +12,12 @@ class UsersController < ApplicationController
     render json: user, status: :created
   end
 
+  def update
+    byebug
+    update = current_user.update!(user_params)
+    render json: update, status: :updated
+  end
+
   def destroy
     current_user.destroy
     head :no_content

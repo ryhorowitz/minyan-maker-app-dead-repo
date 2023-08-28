@@ -55,7 +55,7 @@ function App() {
       <Routes>
         <Route path="/users/:id" element={<Profile />} />
         <Route path="/shuls" element={<Shuls />} />
-        <Route path="*" element={<Navigate to="/users/:id" replace />} />
+        <Route path="*" element={<Navigate to={"/users/" + user.id} replace />} />
       </Routes>
 
     </div>
