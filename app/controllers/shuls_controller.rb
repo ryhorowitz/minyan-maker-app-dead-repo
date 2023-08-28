@@ -6,6 +6,8 @@ class ShulsController < ApplicationController
     render json: shuls, status: :ok
   end
 
+  def show; end
+
   private
 
   def shul_not_found

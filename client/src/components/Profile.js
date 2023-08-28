@@ -15,9 +15,26 @@ function Profile() {
 
   function handleUpdateProfile() {
     console.log('save changes clicked')
-    fetch(`/users/${user.id}`)
-      .then(r => r.json)
-      .then(updatedProfile => console.log('updated profile', updatedProfile))
+    const updateOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editForm)
+    }
+    fetch(`/users/${user.id}`, updateOptions)
+      .then(r => r.json())
+      .then(updatedProfile => {
+        console.log('updated profile', updatedProfile)
+        const { email, username } = updatedProfile
+        setUser({
+          ...user,
+          username,
+          email
+        })
+
+        toggleModal()
+      })
   }
 
   function handleFormChange(e) {
