@@ -4,13 +4,6 @@ class Service < ApplicationRecord
   has_many :users, through: :user_services
 
   validates :name, inclusion: { in: %w[Shacharit Mincha Maariv] }
-  validates :start_datetime, presence: true
-
-  private
-
-  def start_datetime_is_datetime
-    return if start_datetime.is_a?(Time)
-
-    errors.add(:start_datetime, 'must be a valid datetime')
-  end
+  validates :time, presence: true
+  validates :date, presence: true
 end
