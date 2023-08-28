@@ -6,6 +6,8 @@ import Signup from './components/Signup'
 import LoginSignupButtonsContainer from './components/LoginSignupButtonsContainer'
 import NavBar from './components/NavBar'
 import Shuls from './components/Shuls'
+import Profile from './components/Profile'
+
 function App() {
   const { user, setUser } = useContext(AppContext)
   const navigate = useNavigate()
@@ -50,11 +52,10 @@ function App() {
   return (
     <div className="App">
       <NavBar logout={handleLogout} />
-
-      <h2>hello world</h2>
       <Routes>
-        <Route path="/shuls" element={<Shuls to="/shuls" />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/users/:id" element={<Profile />} />
+        <Route path="/shuls" element={<Shuls />} />
+        <Route path="*" element={<Navigate to="/users/:id" replace />} />
       </Routes>
 
     </div>
