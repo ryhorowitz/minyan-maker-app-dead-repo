@@ -79,24 +79,26 @@ function Profile() {
             <div className="modal-body bg-secondary-subtle">
               <form className="">
                 <div className="mb-3">
-                  <label htmlFor="inputUsername" className="form-label">Username</label>
+                  <label htmlFor="usernameUpdate" className="form-label">Username</label>
                   <input type="text"
                     name="username"
                     value={editForm.username}
                     className="form-control"
                     id="usernameUpdate"
                     aria-describedby="usernameUpdate"
-                    onChange={handleFormChange} />
+                    onChange={handleFormChange}
+                    autoComplete="false" />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="inputEmail1" className="form-label">Email address</label>
+                  <label htmlFor="emailUpdate" className="form-label">Email address</label>
                   <input type="email"
                     name="email"
                     value={editForm.email}
                     className="form-control"
                     id="emailUpdate"
                     aria-describedby="emailUpdate"
-                    onChange={handleFormChange} />
+                    onChange={handleFormChange}
+                    autoComplete="false" />
                 </div>
               </form>
             </div>
