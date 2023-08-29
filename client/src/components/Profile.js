@@ -45,10 +45,16 @@ function Profile() {
   }
 
   function handleDeleteRSVP(userServiceId) {
-
     fetch(`/user_service/${userServiceId}`, { method: "DELETE" })
+      .then(() => onDeleteRemoveUserServiceFromState(userServiceId))
   }
-
+  function onDeleteRemoveUserServiceFromState(userServiceId) {
+    const filteredUserServices = user.user_services.filter(s => s.id !== userServiceId)
+    setUser({
+      ...user,
+      user_services: filteredUserServices
+    })
+  }
   const nextMinyanUserAttending = user.user_services.map(s => {
     // console.log('s is ', s)
     return <li className="list-group-item" key={s.id}>
