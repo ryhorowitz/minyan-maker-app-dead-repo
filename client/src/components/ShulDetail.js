@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import AppContext from "../AppContext"
 
 function ShulDetail() {
-  const { shulDetails, setShulDetails, user } = useContext(AppContext)
+  const { shulDetails, setShulDetails, user, setUser } = useContext(AppContext)
   const [errors, setErrors] = useState([])
 
   useEffect(() => {
@@ -13,6 +13,13 @@ function ShulDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function addRSVPToState(rsvp) {
+    // check rsvp format
+    setUser({
+      ...user,
+      user_services: [...user.user_services, rsvp]
+    })
+  }
   async function handleRSVP(serviceId, e) {
     const postObj = {
       method: "POST",
@@ -30,6 +37,7 @@ function ShulDetail() {
     if (res.ok) {
       console.log('rsvp response', rsvp)
       // add data to FE state
+      addRSVPToState(rsvp)
     } else {
       console.log('res errors', rsvp.errors)
       setErrors(rsvp.errors)
