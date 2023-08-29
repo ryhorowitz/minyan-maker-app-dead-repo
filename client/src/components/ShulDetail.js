@@ -1,18 +1,15 @@
 import { useContext, useEffect } from "react"
-
 import AppContext from "../AppContext"
-
 
 function ShulDetail() {
   const { shulDetails, setShulDetails, user } = useContext(AppContext)
-  // shulDetails.services[0]
-  // user.id
 
   useEffect(() => {
     return () => {
       // Update state just before the component unmounts
       setShulDetails({});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleRSVP(serviceId, e) {

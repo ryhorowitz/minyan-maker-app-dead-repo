@@ -32,7 +32,6 @@ function Profile() {
           username,
           email
         })
-
         toggleModal()
       })
   }
@@ -44,6 +43,14 @@ function Profile() {
       [name]: value
     })
   }
+
+  const nextMinyanUserAttending = user.user_services.map(s => {
+    console.log('s is ', s)
+    return <li className="list-group-item" key={s.id}>
+      {s.id}
+      {/* {s.service.name} at {s.service.time}, {s.service.date} */}
+    </li>
+  })
   // I want to display all the users rsvps during the next 24hrs
   return (
     <>
@@ -66,6 +73,14 @@ function Profile() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="container">
+          <h4 className="mt-3">Going to:</h4>
+          <ul className="list-group">
+            {nextMinyanUserAttending}
+            <li className="list-group-item">An item</li>
+            <li className="list-group-item">A second item</li>
+          </ul>
         </div>
       </div >
 
