@@ -8,8 +8,6 @@ function Shuls() {
   const navigate = useNavigate()
 
   function handleShulClick(id) {
-    // navigate to new page with more indepth shul info like services
-    console.log('shul id is', id)
     fetch(`/shuls/${id}`)
       .then(r => r.json())
       .then(shul => setShulDetails(shul))

@@ -44,6 +44,7 @@ function Profile() {
       [name]: value
     })
   }
+  // I want to display all the users rsvps during the next 24hrs
   return (
     <>
       <div className="container my-5">
@@ -67,8 +68,8 @@ function Profile() {
           </div>
         </div>
       </div >
-      {/* <!-- Modal --> */}
 
+      {/* <!-- Edit Modal --> */}
       <div className={`modal ${showModal ? 'show' : ''}`} tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }}>
         <div className="modal-dialog">
           <div className="modal-content">

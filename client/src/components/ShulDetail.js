@@ -1,13 +1,21 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 
 import AppContext from "../AppContext"
 
 
 function ShulDetail() {
-  const { shulDetails, user } = useContext(AppContext)
+  const { shulDetails, setShulDetails, user } = useContext(AppContext)
   // shulDetails.services[0]
   // user.id
-  function handleRSVP(serviceId) {
+
+  useEffect(() => {
+    return () => {
+      // Update state just before the component unmounts
+      setShulDetails({});
+    };
+  }, []);
+
+  function handleRSVP(serviceId, e) {
     const postObj = {
       method: "POST",
       headers: {
@@ -18,10 +26,12 @@ function ShulDetail() {
         service_id: serviceId
       })
     }
-    // console.log('userService postObj', postObj)
+
     fetch(`/user_service/`, postObj)
       .then(r => r.json())
-      .then(data => console.log('rsvp response', data))
+      .then(data => {
+        console.log('rsvp response', data)
+      })
   }
   const servicesList = shulDetails.services.map(service => {
     return <li className="list-group-item"
@@ -29,8 +39,9 @@ function ShulDetail() {
       <div className="row row-cols-2">
         <div className="col-3">
           <button type="button"
-            class="btn btn-primary btn-sm"
-            onClick={() => handleRSVP(service.id)}>RSVP</button>
+            className="btn btn-primary btn-sm"
+            id={`service-${service.id}`}
+            onClick={(e) => handleRSVP(service.id, e)}>RSVP</button>
         </div>
         <div className="col-9">
           {service.name} {service.parsed_time}
