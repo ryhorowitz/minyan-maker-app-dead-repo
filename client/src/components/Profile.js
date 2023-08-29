@@ -44,11 +44,11 @@ function Profile() {
     })
   }
 
-  const nextMinyanUserAttending = user.user_services.map(s => {
+  const nextMinyanUserAttending = user.services.map(s => {
     console.log('s is ', s)
     return <li className="list-group-item" key={s.id}>
-      {s.id}
-      {/* {s.service.name} at {s.service.time}, {s.service.date} */}
+      <div className="text-end">{s.parsed_time} {s.name} {s.parsed_date}</div>
+      <div className="text-end">at {s.shul.name}</div>
     </li>
   })
   // I want to display all the users rsvps during the next 24hrs
@@ -78,8 +78,6 @@ function Profile() {
           <h4 className="mt-3">Going to:</h4>
           <ul className="list-group">
             {nextMinyanUserAttending}
-            <li className="list-group-item">An item</li>
-            <li className="list-group-item">A second item</li>
           </ul>
         </div>
       </div >

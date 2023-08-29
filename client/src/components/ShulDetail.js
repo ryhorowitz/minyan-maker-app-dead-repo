@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import AppContext from "../AppContext"
 
 function ShulDetail() {
   const { shulDetails, setShulDetails, user } = useContext(AppContext)
+  const [errors, setErrors] = useState([])
 
   useEffect(() => {
     return () => {
@@ -12,7 +13,7 @@ function ShulDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function handleRSVP(serviceId, e) {
+  async function handleRSVP(serviceId, e) {
     const postObj = {
       method: "POST",
       headers: {
@@ -24,11 +25,16 @@ function ShulDetail() {
       })
     }
 
-    fetch(`/user_service/`, postObj)
-      .then(r => r.json())
-      .then(data => {
-        console.log('rsvp response', data)
-      })
+    const res = await fetch(`/user_service/`, postObj)
+    const rsvp = await res.json()
+    if (res.ok) {
+      console.log('rsvp response', rsvp)
+      // add data to FE state
+    } else {
+      console.log('res errors', rsvp.errors)
+      setErrors(rsvp.errors)
+    }
+
   }
   const servicesList = shulDetails.services.map(service => {
     return <li className="list-group-item"
@@ -62,11 +68,18 @@ function ShulDetail() {
               <h5 className="card-title text-center">{shulDetails.name}</h5>
               <p className="text-end">{shulDetails.street_address} {shulDetails.city}, {shulDetails.state} {shulDetails.postal_code}</p>
             </div>
-            <h4>Daily Services:</h4>
+            <h4>Next Service is:</h4>
             <ul className="list-group list-group-flush">
               {servicesList.length > 0 ? servicesList : 'No Services at the moment'}
             </ul>
-            <p className="fs-6">Click RSVP button to confirm that you are joining tomorrows minyan.</p>
+            {errors.length > 0 && (
+              <ul style={{ color: "red" }}>
+                {errors.map((error) => (
+                  <li key={error}> {`RSVP Error ${error}`} </li>
+                ))}
+              </ul>
+            )}
+            <p className="fs-6">Click RSVP button to confirm that you are joining tomorrow's minyan.</p>
           </div>
         </div>
 
