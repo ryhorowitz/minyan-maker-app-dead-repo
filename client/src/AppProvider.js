@@ -5,12 +5,12 @@ const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [shuls, setShuls] = useState([])
   const [shulDetails, setShulDetails] = useState({})
+
   useEffect(() => {
-    // get shuls
-    fetch(`shuls`)
+    fetch(`/shuls`)
       .then(r => r.json())
       .then(shuls => setShuls(shuls))
-  }, [])
+  }, [user])
 
   return (
     <AppContext.Provider value={{

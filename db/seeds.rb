@@ -40,29 +40,32 @@ tomorrow = Time.now + 1.day
 tomorrow_at_715 = tomorrow.change(hour: 7, min: 15)
 tomorrow_at_1530 = tomorrow.change(hour: 15, min: 30)
 tomorrow_at_1930 = tomorrow.change(hour: 19, min: 30)
-
+# only shacharit for initial dev
 Service.create!(
   name: 'Shacharit',
   shul_id: 1,
   date: Time.now + 1.day,
   time: Time.zone.parse('7:15')
 )
-Service.create!(
-  name: 'Mincha',
-  shul_id: 1,
-  date: Time.now + 1.day,
-  time: Time.zone.parse('15:00')
-)
-Service.create!(
-  name: 'Maariv',
-  shul_id: 1,
-  date: Time.now + 1.day,
-  time: Time.zone.parse('19:30')
-)
+# Service.create!(
+#   name: 'Mincha',
+#   shul_id: 1,
+#   date: Time.now + 1.day,
+#   time: Time.zone.parse('15:00')
+# )
+# Service.create!(
+#   name: 'Maariv',
+#   shul_id: 1,
+#   date: Time.now + 1.day,
+#   time: Time.zone.parse('19:30')
+# )
 
 user_1.user_services.create!(service_id: 1)
 user_3.user_services.create!(service_id: 1)
-user_2.user_services.create!(service_id: 2)
-user_4.user_services.create!(service_id: 2)
+user_2.user_services.create!(service_id: 1)
+user_4.user_services.create!(service_id: 1)
 user_5.user_services.create!(service_id: 1)
 puts 'Seeded'
+
+# if the day is sunday then shacharit is 8:30
+# if it is saturday it is 9:30

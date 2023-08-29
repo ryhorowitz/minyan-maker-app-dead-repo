@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: %i[create destroy update]
   resources :shuls, only: %i[index show]
+  resources :user_service, only: %i[create]
   get '/auth', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

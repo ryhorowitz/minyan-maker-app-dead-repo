@@ -10,7 +10,7 @@ import Profile from './components/Profile'
 import ShulDetail from './components/ShulDetail'
 
 function App() {
-  const { user, setUser } = useContext(AppContext)
+  const { user, setUser, setShuls } = useContext(AppContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -27,6 +27,7 @@ function App() {
   function handleLogout() {
     fetch('/logout', { method: 'DELETE' })
       .then(() => setUser(null))
+      .then(() => setShuls([]))
       .then(() => navigate('/login'))
   }
   if (!user) {
