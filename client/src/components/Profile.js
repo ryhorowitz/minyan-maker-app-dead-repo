@@ -44,11 +44,20 @@ function Profile() {
     })
   }
 
-  const nextMinyanUserAttending = user.services.map(s => {
-    console.log('s is ', s)
+  function handleDeleteRSVP(userServiceId) {
+
+    fetch(`/user_service/${userServiceId}`, { method: "DELETE" })
+  }
+
+  const nextMinyanUserAttending = user.user_services.map(s => {
+    // console.log('s is ', s)
     return <li className="list-group-item" key={s.id}>
-      <div className="text-end">{s.parsed_time} {s.name} {s.parsed_date}</div>
-      <div className="text-end">at {s.shul.name}</div>
+      <div className="text-end">{s.parsed_time} {s.service_name} {s.parsed_date}</div>
+      <div className="text-end">at {s.service_shul_name}</div>
+      <button className="btn btn-primary btn-sm"
+        type="button"
+        id={s.id}
+        onClick={() => { handleDeleteRSVP(s.id) }} >Cancel</button>
     </li>
   })
   // I want to display all the users rsvps during the next 24hrs

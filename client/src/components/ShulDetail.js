@@ -34,21 +34,21 @@ function ShulDetail() {
       console.log('res errors', rsvp.errors)
       setErrors(rsvp.errors)
     }
-
   }
   const servicesList = shulDetails.services.map(service => {
     return <li className="list-group-item"
       key={service.id} >
-      <div className="row row-cols-2">
-        <div className="col-3">
-          <button type="button"
-            className="btn btn-primary btn-sm"
-            id={`service-${service.id}`}
-            onClick={(e) => handleRSVP(service.id, e)}>RSVP</button>
-        </div>
-        <div className="col-9">
-          {service.name} {service.parsed_time}
-        </div>
+      <div className="row">
+        {service.name} {service.parsed_time}
+      </div>
+      <div className="row text-end">
+        {service.parsed_date}
+      </div>
+      <div className="row">
+        <button type="button"
+          className="btn btn-primary btn-sm"
+          id={`service-${service.id}`}
+          onClick={(e) => handleRSVP(service.id, e)}>RSVP</button>
       </div>
     </li>
   })
@@ -75,7 +75,7 @@ function ShulDetail() {
             {errors.length > 0 && (
               <ul style={{ color: "red" }}>
                 {errors.map((error) => (
-                  <li key={error}> {`RSVP Error ${error}`} </li>
+                  <li key={error}> {`RSVP Error: ${error}`} </li>
                 ))}
               </ul>
             )}

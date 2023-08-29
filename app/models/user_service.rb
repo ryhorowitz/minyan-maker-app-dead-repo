@@ -8,6 +8,6 @@ class UserService < ApplicationRecord
 
     return unless existing_user_service && existing_user_service != self
 
-    errors.add(:base, 'Cannot RSVP to the same service twice')
+    errors.add(:base, 'Cannot RSVP to the same service twice.')
   end
 end
