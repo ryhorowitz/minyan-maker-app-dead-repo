@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import AppContext from './AppContext'
 import Login from "./components/Login"
 import Signup from './components/Signup'
@@ -10,8 +10,7 @@ import Profile from './components/Profile'
 import ShulDetail from './components/ShulDetail'
 
 function App() {
-  const { user, setUser, setShuls } = useContext(AppContext)
-  const navigate = useNavigate()
+  const { user, setUser, handleLogout } = useContext(AppContext)
 
   useEffect(() => {
     fetch('/auth')
@@ -24,12 +23,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  function handleLogout() {
-    fetch('/logout', { method: 'DELETE' })
-      .then(() => setUser(null))
-      .then(() => setShuls([]))
-      .then(() => navigate('/login'))
-  }
   if (!user) {
     return (
       <>

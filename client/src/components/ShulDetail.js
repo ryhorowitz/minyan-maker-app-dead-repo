@@ -14,7 +14,6 @@ function ShulDetail() {
   }, []);
 
   function addRSVPToState(rsvp) {
-    // check rsvp format
     setUser({
       ...user,
       user_services: [...user.user_services, rsvp]
@@ -35,8 +34,6 @@ function ShulDetail() {
     const res = await fetch(`/user_service/`, postObj)
     const rsvp = await res.json()
     if (res.ok) {
-      console.log('rsvp response', rsvp)
-      // add data to FE state
       addRSVPToState(rsvp)
     } else {
       console.log('res errors', rsvp.errors)

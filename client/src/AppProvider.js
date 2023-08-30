@@ -12,11 +12,18 @@ const AppProvider = ({ children }) => {
       .then(shuls => setShuls(shuls))
   }, [user])
 
+  function handleLogout() {
+    fetch('/logout', { method: 'DELETE' })
+      .then(() => setUser(null))
+      .then(() => setShuls([]))
+  }
+
   return (
     <AppContext.Provider value={{
       user, setUser,
       shuls, setShuls,
-      shulDetails, setShulDetails
+      shulDetails, setShulDetails,
+      handleLogout
     }}>
       {children}
     </AppContext.Provider>

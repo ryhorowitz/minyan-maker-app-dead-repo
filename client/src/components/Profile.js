@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import AppContext from "../AppContext"
 
 function Profile() {
-  const { user, setUser } = useContext(AppContext)
+  const { user, setUser, handleLogout } = useContext(AppContext)
   const [showModal, setShowModal] = useState(false)
   const [editForm, setEditForm] = useState({
     email: user.email,
@@ -13,8 +13,14 @@ function Profile() {
     setShowModal(!showModal)
   }
 
+  function handleDeleteProfile() {
+    fetch(`/users/${user.id}`, { method: 'DELETE' })
+      .then(() => {
+        handleLogout()
+      })
+  }
+
   function handleUpdateProfile() {
-    console.log('save changes clicked')
     const updateOptions = {
       method: "PATCH",
       headers: {
@@ -25,7 +31,6 @@ function Profile() {
     fetch(`/users/${user.id}`, updateOptions)
       .then(r => r.json())
       .then(updatedProfile => {
-        console.log('updated profile', updatedProfile)
         const { email, username } = updatedProfile
         setUser({
           ...user,
@@ -131,13 +136,24 @@ function Profile() {
                 </div>
               </form>
             </div>
-            <div className="modal-footer">
-              <button type="button"
-                className="btn btn-secondary btn-sm"
-                onClick={toggleModal}>Close</button>
-              <button type="button"
-                className="btn btn-primary btn-sm"
-                onClick={handleUpdateProfile}>Save changes</button>
+            <div className="container mx-2">
+              <div className="row">
+                <div className="col-md-auto">
+                  <button type="button"
+                    className="btn btn-danger btn-sm"
+                    onClick={handleDeleteProfile}>Delete Profile</button>
+                </div>
+                <div className="col-md text-end">
+                  <button type="button"
+                    className="btn btn-secondary btn-sm mx-2"
+                    onClick={toggleModal}>Close</button>
+                  <button type="button"
+                    className="btn btn-primary btn-sm "
+                    onClick={handleUpdateProfile}>Save changes</button>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
